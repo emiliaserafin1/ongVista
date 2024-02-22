@@ -51,7 +51,7 @@ export default {
     },
     methods: {
       editarAct(index) {
-        console.log('Editar actividad:', this.actividades[index]);
+        console.log('Editar actividad: ', this.actividades[index]);
       },
       darDeBaja(index) {
         // Lógica para dar de baja la actividad, lo mismo arriba
