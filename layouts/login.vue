@@ -1,12 +1,12 @@
 <template>
   <div>
-    <header>
+    <Header>
       <div class="navbar">
         <div class="nav-links">
           <a href="/dashboard">Dashboard</a>
         </div>
       </div>
-    </header>
+    </Header>
     <main>
       <nuxt />
     </main>

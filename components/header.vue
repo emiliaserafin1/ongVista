@@ -1,17 +1,17 @@
 <template>
     <header>
-        <h1>{{ title }}</h1>
+        <div>
+            <img src="./../assets/img/logo-techo-blanco.png" alt="">
+            <nav>
+                <p><a href="">INICIO</a></p>
+                <p><a href="">ADMINISTRAR</a></p>
+            </nav>
+        </div>
     </header>
 </template>
 
 <script>
     export default {
-        props: {
-            title: {
-                type: String,
-                required: true
-            }
-        }
     }
 </script>
 
@@ -20,12 +20,28 @@
         height: 70px;
         display: flex;
         align-items: center;
-        border-bottom: 1px solid #464646;
     }
 
-    header h1 {
+    header img {
         margin-left: 40px;
-        font-size: 28px;
-        font-weight: 500;
+        height: 35px;
+    }
+
+    header div {
+        display: flex;
+        width: 100%;
+    }
+
+    nav {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
+        margin-right: 40px;
+        p a{
+            color: #fff;
+            text-decoration: none;
+            margin: 15px;
+        }
     }
 </style>

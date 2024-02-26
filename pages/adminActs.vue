@@ -14,8 +14,8 @@
             <td>{{ actividad.nombre }}</td>
             <td>{{ actividad.estado }}</td>
             <td>
-              <buttonE @click="abrirModal(index)">Editar</buttonE>
-              <buttonD @click="darDeBaja(index)">Dar de Baja</buttonD>
+              <button class="ButtonE" @click="abrirModal(index)">Editar</button>
+              <button class="ButtonD" @click="darDeBaja(index)">Dar de Baja</button>
             </td>
           </tr>
         </tbody>
@@ -56,8 +56,11 @@ export default {
       darDeBaja(index) {
         // Lógica para dar de baja la actividad, lo mismo arriba
         console.log('Dar de baja actividad:', this.actividades[index]);
-      },
+      }
     },
+    onMounted() {
+      this.getActivities();
+    }
 }
 </script>
 
@@ -87,7 +90,7 @@ table {
   th {
     background-color: #0092DD;
   }
-  buttonE{
+  .buttonE{
     background-color: #fff;
     color: #0092DD;
     padding: 5px;
@@ -96,7 +99,7 @@ table {
     margin-right: 30px;
     margin-left: 30px;
   }
-  buttonD {
+  .buttonD {
     background-color: rgb(207, 18, 18);
     color: #fff;
     padding: 5px;
