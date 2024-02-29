@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import AuthService from '~/services/AuthService';
 
 export default {
   data() {
@@ -29,8 +28,13 @@ export default {
   methods: {
     async login() {
       try {
-        await AuthService.login(this.loginData);
-        this.$router.push('actividades');
+        const { login } = useAuth()
+        const res = await login(this.loginData);
+        if (res) {
+          this.$router.push('actividades');
+        } else {
+          this.loginError = true;
+        }
       } catch (error) {
         console.error('Error en el inicio de sesión:', error);
         this.loginError = true;

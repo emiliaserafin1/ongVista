@@ -1,6 +1,12 @@
 <template>
     <div>
-        <Header title="Techo ONG"></Header>
+        <Header>
+            <div class="navbar">
+                <div class="nav-links">
+                <a href="/dashboard">Dashboard</a>
+                </div>
+            </div>
+        </Header>
         <slot></slot>
     </div>
 </template>
@@ -17,7 +23,6 @@
 <style>
 @import '././../assets/styles/global.css';
 Header {
-    font-family: 'Times New Roman', Times, serif;
     color: #fff;
     background-color: #0092DD;
     border: 1px solid #ccc;

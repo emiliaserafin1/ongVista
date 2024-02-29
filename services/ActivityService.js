@@ -1,78 +1,86 @@
 import { API } from '../constants/api';
-import ApiService from './ApiService';
-import AuthService from './AuthService';
 
 export default {
-  async getAll() {
-    const res = await fetch(API + 'Activity', {
+  getAllActivities() {
+    const { token } = useAuth();
+    return $fetch(API + 'Activity', {
+      method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + AuthService.token,
+        'Authorization': 'Bearer ' + token,
       },
     });
-    const data = await res.json();
-    return data;
   },
   
   async getActivityById(id) {
-    const res = await fetch(API + 'Activity/' + id, {
+    const { token } = useAuth();
+    const res = await $fetch(API + 'Activity/' + id, {
       headers: {
         'Content-type': 'application/json',
-        Authorization: 'Bearer ' + AuthService.token,
+        'Authorization': 'Bearer ' + token,
       },
     });
-    return await res.json();
+    return res;
   },
 
   async createActivity(activity, image) {
-    const res = await fetch(API + 'Activity', {
+    const { token } = useAuth();
+    const res = await $fetch(API + 'Activity', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + AuthService.token, 
+        'Content-Type': 'multipart/form-data',
+        'Authorization': 'Bearer ' + token,
       },
-      body: JSON.stringify(activity),
+      body: activity,
     });
-    return res.ok;
+    return res;
   },
   
   async editActivity(activity) {
+    const { token } = useAuth();
     if (!activity.id) return false;
-    const res = await fetch(API + 'Activity/' + activity.id, {
+    const res = await $fetch(API + 'Activity/' + activity.id, {
       method: 'PUT',
       headers: {
-        'Content-type': 'application/json',
-        Authorization: 'Bearer ' + AuthService.token,
+        'Content-type': 'multipart/form-data',
+        'Authorization': 'Bearer ' + token,
       },
-      body: JSON.stringify(activity),
+      body: activity,
     });
-    return res.ok;
+    return res;
   },
 
   async deleteActivity(id) {
-    const res = await fetch(API + 'Activity/' + id, {
+    const { token } = useAuth();
+    const res = await $fetch(API + 'Activity/' + id, {
       method: 'DELETE',
       headers: {
-        Authorization: 'Bearer ' + AuthService.token,
-      },
+        'Authorization': 'Bearer ' + token,
+      }
     });
-    return res.ok;
+    return res;
   },
 
   async getActivityVolunteers(id){
-    const res = await fetch(API + 'Activity/' + id + '/volunteers', {
+    const { token } = useAuth();
+    const res = await $fetch(API + 'Activity/' + id + '/volunteers', {
+      method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + AuthService.token,
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer ' + token,
       },
     });
-    return await res.json();
+    return res;
   },
 
   async getActivityMaterials(id){
-    const res = await fetch(API + 'Activity/' + id + '/materials', {
+    const { token } = useAuth();
+    const res = await $fetch(API + 'Activity/' + id + '/materials', {
+      method: 'GET',
       headers: {
-        Authorization: 'Bearer ' + AuthService.token,
+        'Content-type': 'application/json',
+        'Authorization': 'Bearer ' + token,
       },
     });
-    return await res.json();
+    return res;
   }
 };

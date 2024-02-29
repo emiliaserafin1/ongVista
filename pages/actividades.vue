@@ -1,26 +1,44 @@
 <template>
     <div class="actividades">
-        <ActividadCard :actividad="objetoPrueba" />
+        <ActividadCard v-for="actividad in actividades" :actividad="actividad" @mostrarModal="mostrarModal(actividad)" />
+        <InfoActividadesModal v-if="mostrarModalBool" :actividad="actividadSeleccionada" @close="ocultarModal" />
     </div>
 </template>
 
 <script>
+    import ActivityService from '~/services/ActivityService';
+    import ActividadCard from '~/components/ActividadCard.vue';
+    import InfoActividadesModal from '~/components/InfoActividadesModal.vue';
+
     export default {
         data() {
             return {
-                objetoPrueba: {
-                    img: {
-                        src: 'https://via.placeholder.com/350x280',
-                        alt: 'Colecta del dia 20/01/2024',
-                    },
-                    zona: 'Rosario Centro',
-                    fechaInicio: '14/02/2024',
-                    duracionEstimada: '2 dias',
-                    cantVoluntarios: 10,
-                    estado: 'A realizar',
-                    materiales: 'Cemento, arena, etc',
-                },
+                actividades: [],
+                mostrarModalBool: false,
+                actividadSeleccionada: {},
             }
+        },
+        methods: {
+            async getAllActivities() {
+                const response = await ActivityService.getAllActivities();
+                console.log('Actividades:', response);
+                this.actividades = response;
+            },
+            mostrarModal(actividad) {
+                this.mostrarModalBool = true;
+                this.actividadSeleccionada = actividad;
+            },
+            ocultarModal() {
+                this.mostrarModalBool = false;
+                this.actividadSeleccionada = {};
+            }
+        },
+        mounted() {
+            this.actividades = this.getAllActivities();
+        },
+        components: {
+            ActividadCard,
+            InfoActividadesModal
         }
     }
 </script>

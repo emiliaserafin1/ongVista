@@ -1,12 +1,5 @@
 <template>
   <div>
-    <Header>
-      <div class="navbar">
-        <div class="nav-links">
-          <a href="/dashboard">Dashboard</a>
-        </div>
-      </div>
-    </Header>
     <main>
       <nuxt />
     </main>
@@ -19,8 +12,8 @@ export default {
 </script>
 
 <style>
+@import '././../assets/styles/global.css';
 body {
-  font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
 }
