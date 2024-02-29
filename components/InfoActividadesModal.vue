@@ -1,6 +1,6 @@
 <template>
   <div class="modal-container">
-    <div><span class="close" @click="close">X</span></div>
+    <div class="close-container"><span class="close" @click="close">X</span></div>
     <div class="actividad">
         <div class="act-img">
             <img src="https://via.placeholder.com/280x280" alt="Actividad">
@@ -30,6 +30,9 @@
     methods: {
       close() {
         this.$emit('close');
+      },
+      inscribirme(){
+        this.$emit('inscribirme');
       }
     
     }
@@ -39,13 +42,30 @@
   .modal-container {
     position: fixed;
     z-index: 1000;
-    width: 100%;
-    top: 100px;
+    top: 130px;
     left: 0;
     right: 0;
-    bottom: 0;
-    background-color: whitesmoke;
+    bottom: 50px;
+    background-color: rgb(221, 50, 50);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 80px;
   }
+
+
+  .close-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  .actividad {
+    display: flex;
+    flex-direction: column;
+  }
+  
   h1 {
     font-size: 24px;
   }
@@ -58,30 +78,13 @@
     padding: 12px;
     border-radius: 10%;
     font-weight: bold;
-    margin: 10px 10px 20px 140px;
+    margin: 10px;
   }
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-  }
-  .modal-content {
-    background-color: #FEFEFE;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-  }
+
   .close {
     cursor: pointer;
     color: #aaa;
-    text-align: right;
+    margin-left: auto;
     font-size: 28px;
     font-weight: bold;
   }

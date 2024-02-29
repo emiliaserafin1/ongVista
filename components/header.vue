@@ -3,8 +3,8 @@
         <div>
             <img src="./../assets/img/logo-techo-blanco.png" alt="">
             <nav>
-                <p><a href="">INICIO</a></p>
-                <p><a href="">ADMINISTRAR</a></p>
+                <p><a href="actividades">INICIO</a></p>
+                <p><router-link to="adminActs">ADMINISTRAR</router-link></p>
             </nav>
         </div>
     </header>

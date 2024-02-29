@@ -1,12 +1,13 @@
 <template>
     <div class="actividades">
-        <ActividadCard v-for="actividad in actividades" :actividad="actividad" @mostrarModal="mostrarModal(actividad)" />
-        <InfoActividadesModal v-if="mostrarModalBool" :actividad="actividadSeleccionada" @close="ocultarModal" />
+        <ActividadCard v-for="(actividad, index) in actividades" :actividad="actividad" v-bind="index" @mostrarModal="mostrarModal(actividad)" />
+        <InfoActividadesModal v-if="mostrarModalBool" :actividad="actividadSeleccionada" @close="ocultarModal" @inscribirme="inscribirme"/>
     </div>
 </template>
 
 <script>
     import ActivityService from '~/services/ActivityService';
+    import UserService from '~/services/UserService';
     import ActividadCard from '~/components/ActividadCard.vue';
     import InfoActividadesModal from '~/components/InfoActividadesModal.vue';
 
@@ -31,6 +32,10 @@
             ocultarModal() {
                 this.mostrarModalBool = false;
                 this.actividadSeleccionada = {};
+            },
+            async inscribirme(){
+                const res = await UserService.registerForActivity(this.actividadSeleccionada.id);
+                console.log(res)
             }
         },
         mounted() {
