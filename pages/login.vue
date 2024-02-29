@@ -14,7 +14,9 @@
 </template>
 
 <script>
-
+definePageMeta({
+  layout: "login",
+})
 export default {
   data() {
     return {
@@ -40,11 +42,12 @@ export default {
         this.loginError = true;
       }
     }
-  }
+  },
+  
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .login-container {
   color: #fff;
   margin-top: 15px;

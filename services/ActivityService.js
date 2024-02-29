@@ -27,7 +27,7 @@ export default {
     const res = await $fetch(API + 'Activity', {
       method: 'POST',
       headers: {
-        'Content-Type': 'multipart/form-data',
+        'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + token,
       },
       body: activity,
@@ -41,7 +41,7 @@ export default {
     const res = await $fetch(API + 'Activity/' + activity.id, {
       method: 'PUT',
       headers: {
-        'Content-type': 'multipart/form-data',
+        'Content-type': 'application/json',
         'Authorization': 'Bearer ' + token,
       },
       body: activity,

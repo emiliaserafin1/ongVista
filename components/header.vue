@@ -20,6 +20,9 @@
         height: 70px;
         display: flex;
         align-items: center;
+        background-color: #0092DD;
+        display: flex;
+        padding: 14px;
     }
 
     header img {

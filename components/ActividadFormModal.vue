@@ -18,26 +18,39 @@
             </div>
             <div>
               <label for="fechaInicio">Fecha Inicio:</label>
-              <input type="text" id="fechaInicio" v-model="actividad.startDate" class="ancho-input">
+              <input type="date" id="fechaInicio" v-model="actividad.startDate" class="ancho-input">
             </div>
             <div>
               <label for="fechaCierre">Fecha Cierre:</label>
-              <input type="text" id="fechaCierre" v-model="actividad.endDate" class="ancho-input">
+              <input type="date" id="fechaCierre" v-model="actividad.endDate" class="ancho-input">
             </div>
             <div>
               <label for="cantVoluntarios">Cantidad de Voluntarios:</label>
-              <input type="text" id="cantVoluntarios" v-model="actividad.volunteerCount" class="ancho-input">
+              <input type="number" id="cantVoluntarios" v-model="actividad.volunteerCount" class="ancho-input">
             </div>
             <div>
               <label for="estado">Estado de la Actividad:</label>
               <input type="text" id="estado" v-model="actividad.state" class="ancho-input">
             </div>
+            <div v-for="(material, index) in materiales" :key="material.id">
+              <label :for="'material_' + index">{{ material.name }}</label>
+              <input type="checkbox" :id="'material_' + index" v-model="material.selectedMaterialIds" class="ancho-input">
+              <label :for="'cantidad_' + index">Cantidad:</label>
+              <input type="text" :id="'cantidad_' + index" v-model="material.materialQuantities" class="ancho-input">
+            </div>
+
             <div class="centrar-boton"><button class="buttonG" @click="editar">Guardar cambios</button></div>
           </div>
       </div>
 </template>
 <script>
+import MaterialService from '~/services/MaterialService';
 export default {
+  data() {
+    return {
+      materiales: [],
+    }
+  },
   props: {
     actividad: {
       type: Object,
@@ -50,7 +63,15 @@ export default {
     },
     editar() {
       this.$emit('editar');
+    },
+    async getAllMaterials() {
+      const response = await MaterialService.getAllMaterials();
+      this.materiales = response;
+      console.log('Materiales:', response);
     }
+  },
+  mounted() {
+    this.getAllMaterials();
   }
 }
 </script>
