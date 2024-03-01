@@ -32,7 +32,7 @@ export default {
       },
       body: activity,
     });
-    return res;
+    return true;
   },
   
   async editActivity(activity) {
@@ -46,7 +46,7 @@ export default {
       },
       body: activity,
     });
-    return res;
+    return true;
   },
 
   async deleteActivity(id) {
@@ -57,7 +57,7 @@ export default {
         'Authorization': 'Bearer ' + token,
       }
     });
-    return res;
+    return res.ok;
   },
 
   async getActivityVolunteers(id){

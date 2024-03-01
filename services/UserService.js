@@ -63,13 +63,18 @@ export default {
   
   async registerForActivity(activityId) {
     const { token } = useAuth();
-    const res = await $fetch(API + 'User/registerForActivity/' + activityId, {
-      method: 'POST',
-      headers: {
-        Authorization: 'Bearer ' + token,
-      },
-    });
-    return res.ok;
+    try {
+      const res = await $fetch(API + 'User/registerForActivity/' + activityId, {
+        method: 'POST',
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+      });
+    }
+    catch (error) {
+      return false;
+    }
+    return true;
   },
 
   async getUserActivities(userId) {

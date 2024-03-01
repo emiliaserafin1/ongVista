@@ -7,9 +7,12 @@
 
 <script>
     import ActivityService from '~/services/ActivityService';
-    import UserService from '~/services/UserService';
     import ActividadCard from '~/components/ActividadCard.vue';
     import InfoActividadesModal from '~/components/InfoActividadesModal.vue';
+    import Swal from 'sweetalert2';
+    import { generarMensajeExito, generarMensajeError } from '~/helpers/mensajes';
+    import UserService from '~/services/UserService';
+
 
     export default {
         data() {
@@ -34,8 +37,28 @@
                 this.actividadSeleccionada = {};
             },
             async inscribirme(){
-                const res = await UserService.registerForActivity(this.actividadSeleccionada.id);
-                console.log(res)
+                Swal.fire({
+                title: `¿Estás seguro de que quieres inscribirte en ${this.actividadSeleccionada.name}?`,
+                showCancelButton: true,
+                confirmButtonColor: '#0092DD',
+                cancelButtonColor: '#b7b7b7',
+                cancelButtonText: 'Volver',
+                confirmButtonText: 'Inscribirme',
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    UserService .registerForActivity(this.actividadSeleccionada.id).then((res) => {
+                    if (res) {
+                        this.getAllActivities();
+                        this.mostrarModalBool = false;
+                        generarMensajeExito('Te has inscripto con exito');
+                    } else {
+                        this.mostrarModalBool = false;
+                        generarMensajeError('No se ha podido confirmar tu inscripcion');
+                    }
+                    });
+                }
+                });
+                
             }
         },
         mounted() {
@@ -47,3 +70,11 @@
         }
     }
 </script>
+
+<style>
+    .actividades {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+</style>

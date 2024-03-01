@@ -52,7 +52,7 @@
 
 <style scoped>
 .actividad {
-    background-color: rgb(241, 235, 235);
+    background-color: rgb(241, 241, 241);
     margin: 30px;
     overflow: hidden;
     display: flex;
@@ -82,8 +82,24 @@
     font-weight: 600;
     margin-bottom: 5px;
 }
+.act-body p {
+    margin: 12px 0;
+    color: #494949;
+    font-weight: bold;
+}
+
+.act-body p span {
+    font-weight: normal;
+}
 
 button {
-    cursor: pointer;
+  padding: 10px;
+  background-color: #007bff;
+  width: 100%;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: medium;
 }
 </style>

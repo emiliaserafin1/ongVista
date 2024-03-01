@@ -5,7 +5,6 @@ export const useAuth = () => {
     let token = null;
     if (process.client && localStorage.getItem('token')) {
         token = localStorage.getItem('token');
-        console.log(token);
     }
     const setUser = (user) => {
         authUser.value = user
@@ -16,7 +15,6 @@ export const useAuth = () => {
                 method: 'POST',
                 body: loginData,
             })
-            console.log(data)
             localStorage.setItem('token', data)
             setUser(data.user)
             return data
